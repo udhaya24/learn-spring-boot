@@ -1,0 +1,134 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Beer Catalog API",
+    "description" : "beer catalog api",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/beer" : {
+      "get" : {
+        "summary" : "Get all beers",
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Beer"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create new beer",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Beer"
+          }
+        } ],
+        "responses" : {
+          "201" : { }
+        }
+      }
+    },
+    "/beer/{name}" : {
+      "get" : {
+        "summary" : "Get by name",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body"
+        } ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/Beer"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update beer",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Beer"
+          }
+        } ],
+        "responses" : {
+          "204" : { }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete by name",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body"
+        } ],
+        "responses" : {
+          "204" : { }
+        }
+      },
+      "parameters" : [ {
+        "name" : "name",
+        "in" : "path",
+        "description" : "name of beer",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/beer/findByStatus/{status}" : {
+      "get" : {
+        "summary" : "Get beer by status",
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/Beer"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "status",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "Beer" : {
+      "title" : "Root Type for Beer",
+      "description" : "The root of the Beer type's schema.",
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "description" : "name of the beer",
+          "type" : "string"
+        },
+        "country" : {
+          "description" : "origin country of beer",
+          "type" : "string"
+        },
+        "rating" : {
+          "description" : "rating for the beer",
+          "type" : "number"
+        },
+        "status" : {
+          "description" : "Stock status",
+          "type" : "string"
+        },
+        "type" : {
+          "description" : "type of beer",
+          "type" : "string"
+        }
+      },
+      "example" : "{\n    \"name\" : \"name of the beer\",\n    \"country\" : \"origin country of the beer\",\n    \"rating\" : 4,\n    \"status\" : \"Present\",\n    \"type\" : \"beer type\"\n    \n}"
+    }
+  }
+}
